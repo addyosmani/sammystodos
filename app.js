@@ -8,10 +8,9 @@
         };
         
 
-        
         this.get('#/404', function() {
             this.partial('templates/404.template', {}, function(html) {
-                $('#page').html(html);
+                $('#todo-list').html(html);
             });
         });
         
@@ -22,7 +21,7 @@
                     list: list,
                     todos: Todos.filter('listId', list.id)
                 }, function(html) {
-                    $('#page').html(html);
+                    $('#todo-list').html(html);
                 });
             } else {
                 this.notFound();
@@ -59,7 +58,7 @@ if(Lists._data.length <=0){
                         case "todo":
                             var todo = Todos.create({ name: 'My new todo', done: false, listId: parseInt($('h2').attr('data-id'), 10) });
                             context.partial('templates/_todo.template', todo, function(html) {
-                                $(html).insertBefore('#page li:last');
+                                $(html).insertBefore('#todo-list li:last');
                             });
                             break;
                     }
@@ -167,7 +166,7 @@ if(Lists._data.length <=0){
         });
         
         this.bind('delete', function(e, data) {
-            if (confirm('Are you sure you want to delete this ' + data.type + '?')) {
+            //if (confirm('Are you sure you want to delete this ' + data.type + '?')) {
                 var model = data.type == 'list' ? Lists : Todos;
                 model.destroy(data.id);
                 
@@ -193,7 +192,7 @@ if(Lists._data.length <=0){
                     // delete the todo from the view
                     $('li[data-id=' + data.id + ']').remove();
                 }
-            }
+//            }
         });
         
         this.bind('updateLists', function(e, data) {
