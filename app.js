@@ -7,11 +7,7 @@
             this.runRoute('get', '#/404');
         };
         
-        this.get('#/about', function() {
-            this.partial('templates/about.template', {}, function(html) {
-                $('#page').html(html);
-            });
-        });
+
         
         this.get('#/404', function() {
             this.partial('templates/404.template', {}, function(html) {
@@ -32,18 +28,21 @@
                 this.notFound();
             }
         });
-        
-        this.get('#/about', function() {
-            this.log('about');
-        });
-        
+
         
         // events
         this.bind('run', function(e, data) {
             var context = this;
             
-            var title = localStorage.getItem('title') || "Sammy's Todos";
+            var title = localStorage.getItem('title') || "Todo";
             $('h1').text(title);
+
+if(Lists._data.length <=0){
+	var list = Lists.create({ name: 'My new list' });
+    //Todos.create({ name: 'Something todo', done: false, listId: list.id });
+    //context.redirect('#/list/'+list.id);
+    app.trigger('updateLists');
+}
             
             $('.new')
                 .live('click', function() {
@@ -51,11 +50,11 @@
                         type  = $this.attr('data-type');
                     
                     switch (type) {
-                        case "list":
+                        case "list":/*
                             var list = Lists.create({ name: 'My new list' });
                             Todos.create({ name: 'Something todo', done: false, listId: list.id });
                             context.redirect('#/list/'+list.id);
-                            app.trigger('updateLists');
+                            app.trigger('updateLists');*/
                             break;
                         case "todo":
                             var todo = Todos.create({ name: 'My new todo', done: false, listId: parseInt($('h2').attr('data-id'), 10) });
