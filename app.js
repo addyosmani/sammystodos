@@ -43,17 +43,29 @@ if(Lists._data.length <=0){
     app.trigger('updateLists');
 }
             
+$('#new-todo').keydown(function(e) {
+    if (e.keyCode == 13){ 
+		var todoContent = $(this).val();
+        var todo = Todos.create({ name: todoContent, done: false, listId: parseInt($('h2').attr('data-id'), 10) });
+		context.partial('templates/_todo.template', todo, function(html) {
+            $(html).insertAfter('#todo-list li:last');
+        });
+	 
+	}
+});
+		
+		/*	
             $('.new')
                 .live('click', function() {
                     var $this = $(this),
                         type  = $this.attr('data-type');
                     
                     switch (type) {
-                        case "list":/*
+                        case "list":
                             var list = Lists.create({ name: 'My new list' });
                             Todos.create({ name: 'Something todo', done: false, listId: list.id });
                             context.redirect('#/list/'+list.id);
-                            app.trigger('updateLists');*/
+                            app.trigger('updateLists');
                             break;
                         case "todo":
                             var todo = Todos.create({ name: 'My new todo', done: false, listId: parseInt($('h2').attr('data-id'), 10) });
@@ -62,7 +74,7 @@ if(Lists._data.length <=0){
                             });
                             break;
                     }
-                });
+                });*/
             
             $('#lists')
                 .delegate('dd[data-id]', 'click', function() {

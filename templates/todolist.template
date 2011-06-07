@@ -1,16 +1,15 @@
-<h2 data-type="list" data-id="<%= list.id %>"><%= list.name %></h2>
+<h2 data-type="list" data-id="<%= list.id %>"></h2>
 <span class="trashcan" data-type="list" data-id="<%= list.id %>"></span>
     <% $.each(todos, function(index, todo) { %>
       <li data-type="todo" data-id="<%= todo.id %>" class="<%= todo.done ? 'done' : '' %>">
 <div class="todo">
 	<div class="display">
-<span class="checkbox"></span><span class="trashcan" data-type="todo" data-id="<%= todo.id %>"></span><span contenteditable="true" data-type="todo" data-id="<%= todo.id %>"><%= todo.name %></span>
+<span class="checkbox"></span><span class="trashcan" data-type="todo" data-id="<%= todo.id %>"></span><span contenteditable="true" data-type="todo" data-id="<%= todo.id %>" class="todo-item"><%= todo.name %></span>
 </div>
 </div>
 </li>
     <% }); %>
 
-    <li class="new" data-type="todo">New todo</li>
 
 
 
