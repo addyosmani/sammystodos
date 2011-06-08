@@ -1,5 +1,4 @@
 <h2 data-type="list" data-id="<%= list.id %>"></h2>
-<span class="trashcan" data-type="list" data-id="<%= list.id %>"></span>
     <% $.each(todos, function(index, todo) { %>
       <li data-type="todo" data-id="<%= todo.id %>" class="<%= todo.done ? 'done' : '' %>">
 <div class="todo">
