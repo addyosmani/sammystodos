@@ -92,6 +92,15 @@ $('#new-todo').keydown(function(e) {
                     });
                 });
         
+			//new
+           $('.check')
+               .live('click', function() {
+                   var $this  = $(this),
+                       $li    = $this.parents('li').toggleClass('done'),
+                       isDone = $li.is('.done');
+                   app.trigger('mark' + (isDone ? 'Done' : 'Undone'), { id: $li.attr('data-id') });
+            });
+	
             $('.checkbox')
                 .live('click', function() {
                     var $this  = $(this),
@@ -168,6 +177,7 @@ $('#new-todo').keydown(function(e) {
             }
         });
         
+		
         this.bind('markDone', function(e, data) {
             this.log('marking todo with id ' + data.id + ' as done');
             Todos.update(data.id, { done: true });
