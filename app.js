@@ -50,6 +50,7 @@ $('#new-todo').keydown(function(e) {
 		context.partial('templates/_todo.template', todo, function(html) {
             $(html).insertAfter('#todo-list li:last');
         });
+		$(this).val('');
 	 
 	}
 });

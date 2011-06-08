@@ -23,9 +23,11 @@ p { position: absolute; top: 116px; left: 80px; margin: 0; padding: 0; width: 27
 .new:hover { opacity: .75; }
 
 
-.trashcan { position: absolute; top: 63px; left: 57px; width: 15px; height: 19px; cursor: pointer; background: url(assets/trashcan.png) no-repeat; opacity: .25; }
+.trashcan { position: absolute; top: 63px; left: 57px; width: 25px; height: 25px; cursor: pointer; background: url(assets/destroy.png) no-repeat;  }
 .trashcan:hover { opacity: .75; }
-li .trashcan { top: 1px; left: -48px; }
+li .trashcan { float: right;
+left: 95%;
+top: 15px; }
 #page:hover .trashcan { display: inline-block; }
 
 
