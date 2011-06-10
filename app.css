@@ -11,8 +11,7 @@ dd { margin: 0 0 5px 15px; padding: 0; font-size: 17px; cursor: pointer; }
 h2 { position: absolute; top: 56px; left: 77px; margin: 0; font-size: 30px; width: 275px; height: 1.2em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: normal; }
 /*ul { position: absolute; top: 116px; left: 80px; margin: 0; padding: 0; width: 275px; list-style: none; }*/
 li { position: relative; margin: 0 0 0 25px; padding: 0; font-size: 20px; line-height: 27px; }
-li .checkbox { position: absolute; top: 0; left: -25px; display: inline-block; width: 20px; height: 22px; cursor: pointer; background: url(assets/checkbox-unchecked.png) no-repeat; }
-li.done .checkbox { background-image: url(assets/checkbox-checked.png); /*text-decoration: line-through;*/ }
+
 p { position: absolute; top: 116px; left: 80px; margin: 0; padding: 0; width: 275px; font-size: 20px; line-height: 27px; }
 
 

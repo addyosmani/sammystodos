@@ -35,47 +35,29 @@
             
             var title = localStorage.getItem('title') || "Todo";
             $('h1').text(title);
+			
+			if(Lists._data.length <=0){
+				var list = Lists.create({ name: 'My new list' });
+				app.trigger('updateLists');
+			}
+						
+			$('#new-todo').keydown(function(e) {
+				if (e.keyCode == 13){ 
+					var todoContent = $(this).val();
+					var todo = Todos.create({ name: todoContent, done: false, listId: parseInt($('h2').attr('data-id'), 10) });
+					context.partial('templates/_todo.template', todo, function(html) {
+						//$(html).insertAfter('#todo-list li:last');
+						var q = $(html);
+						console.log(q);
+						$('#todo-list').append(q);
 
-if(Lists._data.length <=0){
-	var list = Lists.create({ name: 'My new list' });
-    //Todos.create({ name: 'Something todo', done: false, listId: list.id });
-    //context.redirect('#/list/'+list.id);
-    app.trigger('updateLists');
-}
-            
-$('#new-todo').keydown(function(e) {
-    if (e.keyCode == 13){ 
-		var todoContent = $(this).val();
-        var todo = Todos.create({ name: todoContent, done: false, listId: parseInt($('h2').attr('data-id'), 10) });
-		context.partial('templates/_todo.template', todo, function(html) {
-            $(html).insertAfter('#todo-list li:last');
-        });
-		$(this).val('');
-	 
-	}
-});
+					});
+					$(this).val('');
+				 
+				}
+			});
 		
-		/*	
-            $('.new')
-                .live('click', function() {
-                    var $this = $(this),
-                        type  = $this.attr('data-type');
-                    
-                    switch (type) {
-                        case "list":
-                            var list = Lists.create({ name: 'My new list' });
-                            Todos.create({ name: 'Something todo', done: false, listId: list.id });
-                            context.redirect('#/list/'+list.id);
-                            app.trigger('updateLists');
-                            break;
-                        case "todo":
-                            var todo = Todos.create({ name: 'My new todo', done: false, listId: parseInt($('h2').attr('data-id'), 10) });
-                            context.partial('templates/_todo.template', todo, function(html) {
-                                $(html).insertBefore('#todo-list li:last');
-                            });
-                            break;
-                    }
-                });*/
+
             
             $('#lists')
                 .delegate('dd[data-id]', 'click', function() {
