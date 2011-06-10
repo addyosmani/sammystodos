@@ -1,5 +1,5 @@
 <!doctype html>
-<html manifest="cache.manifest">
+<html>
     <head>
         <meta charset="UTF-8">
         <title>Todo App</title>
@@ -11,11 +11,9 @@
         <script src="lib/model.js" type="text/javascript" charset="utf-8"></script>
         <script src="app.js" type="text/javascript" charset="utf-8"></script>
         <script type="text/javascript" charset="utf-8">
-/*
             if (!'localStorage' in window) {
-                alert("Oh no! Your browser doesn't support localStorage and probably doesn't support the other cool stuff needed to run this app properly. Sad day :(");
-            }*/
-
+            		alert('Your browser does not support localStorage');
+	            }
         </script>
     </head>
     <body>
@@ -49,10 +47,6 @@
 			based on some code by Brandon Aaron
 	    </div>
 	
-	
-	
-        <div id="surface">
-            <div id="lists"></div>
-        </div>
+
     </body>
 </html>

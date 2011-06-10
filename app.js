@@ -186,7 +186,7 @@
                             name: 'Initial list'
                         }).id;
                         Todos.create({
-                            name: 'My first todo',
+                            name: 'A sample todo item',
                             done: false,
                             listId: listId
                         });
