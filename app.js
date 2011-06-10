@@ -38,7 +38,7 @@
 			
 			if(Lists._data.length <=0){
 				var list = Lists.create({ name: 'My new list' });
-				app.trigger('updateLists');
+				//app.trigger('updateLists');
 			}
 						
 			$('#new-todo').keydown(function(e) {
@@ -58,12 +58,12 @@
 			});
 		
 
-            
+            /*
             $('#lists')
                 .delegate('dd[data-id]', 'click', function() {
                     context.redirect('#/list/'+$(this).attr('data-id'));
                     app.trigger('updateList');
-                });
+                });*/
             
             $('.trashcan')
                 .live('click', function() {
@@ -75,6 +75,7 @@
                 });
         
 			//new
+			
            $('.check')
                .live('click', function() {
                    var $this  = $(this),
@@ -83,13 +84,14 @@
                    app.trigger('mark' + (isDone ? 'Done' : 'Undone'), { id: $li.attr('data-id') });
             });
 	
+	/*
             $('.checkbox')
                 .live('click', function() {
                     var $this  = $(this),
                         $li    = $this.parents('li').toggleClass('done'),
                         isDone = $li.is('.done');
                     app.trigger('mark' + (isDone ? 'Done' : 'Undone'), { id: $li.attr('data-id') });
-                });
+                });*/
         
             $('[contenteditable]')
                 .live('focus', function() {
@@ -143,30 +145,29 @@
                 this.redirect(lastViewedOrFirstList);
             }
             
-            app.trigger('updateLists');
+            //app.trigger('updateLists');
         });
         
+        /*save the route as the lastviewed item*/
         this.bind('route-found', function(e, data) {
-            // save the route as the lastviewed
             localStorage.setItem('lastviewed', document.location.hash);
         });
         
         this.bind('save', function(e, data) {
             var model = data.type == 'todo' ? Todos : Lists;
             model.update(data.id, { name: data.name });
-            if (data.type == 'list') {
-                app.trigger('updateLists');
-            }
+            //if (data.type == 'list') {
+                //app.trigger('updateLists');
+           // }
         });
         
-		
+		/*marking the selected item as done*/
         this.bind('markDone', function(e, data) {
-            this.log('marking todo with id ' + data.id + ' as done');
             Todos.update(data.id, { done: true });
         });
         
+        /*mark the todo with the selected id as not done*/
         this.bind('markUndone', function(e, data) {
-            this.log('marking todo with id ' + data.id + ' as not done');
             Todos.update(data.id, { done: false });
         });
         
@@ -182,7 +183,7 @@
                     } else {
                         // create first list and todo
                         var listId = Lists.create({
-                            name: 'My first list'
+                            name: 'Initial list'
                         }).id;
                         Todos.create({
                             name: 'My first todo',
@@ -192,7 +193,7 @@
                         
                         this.redirect('#/list/'+listId);
                     }
-                    app.trigger('updateLists');
+                    //app.trigger('updateLists');
                 } else {
                     // delete the todo from the view
                     $('li[data-id=' + data.id + ']').remove();
@@ -200,6 +201,7 @@
 //            }
         });
         
+        /*
         this.bind('updateLists', function(e, data) {
             var selected = parseInt(location.hash.substr(location.hash.lastIndexOf('/')+1), 10);
             this.partial('templates/_lists.template', {
@@ -208,7 +210,8 @@
             }, function(html) {
                 $('#lists').html(html);
             });
-        });
+        });*/
+        
         
     });
 
